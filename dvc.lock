@@ -1,0 +1,37 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py data/raw/heart.csv data/prepared
+    deps:
+    - path: data/raw/heart.csv
+      hash: md5
+      md5: 6481ed154d5b8ff83d7c09007aaa6ed0
+      size: 38114
+    - path: src/prepare.py
+      hash: md5
+      md5: 890b6891d4d58d90e8214f3f4fc6b2ff
+      size: 969
+    outs:
+    - path: data/prepared
+      hash: md5
+      md5: fa1c7ed528453995679bb9a52dd1ff12.dir
+      size: 264379
+      nfiles: 2
+  train:
+    cmd: python src/train.py data/prepared data/models
+    deps:
+    - path: data/prepared
+      hash: md5
+      md5: fa1c7ed528453995679bb9a52dd1ff12.dir
+      size: 264379
+      nfiles: 2
+    - path: src/train.py
+      hash: md5
+      md5: 77c74699d9c4f5af1d04b9cfae2636e5
+      size: 2202
+    outs:
+    - path: data/models
+      hash: md5
+      md5: 50d6d86e38f7ab97a472d6ccb3227ede.dir
+      size: 1230697
+      nfiles: 1
